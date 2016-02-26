@@ -38,13 +38,13 @@ DATA_DESTINATION='symfony/data'
 # Clear code base's cache then copy code to docker filesystem
 rm -rf "$LOCALHOST_CODE_SOURCE_DIR"/app/cache/*
 if [ -d "$CODE_DESTINATION" ]; then
-    rm -r "$CODE_DESTINATION"
+    rm -rf "$CODE_DESTINATION"
 fi
 cp -rp "$LOCALHOST_CODE_SOURCE_DIR" "$CODE_DESTINATION"
 
 # Copy database dump file to docker filesystem
 if [ -d "$DATA_DESTINATION" ]; then
-    rm -r "$DATA_DESTINATION"
+    rm -rf "$DATA_DESTINATION"
 fi
 mkdir "$DATA_DESTINATION" && cp -rp "$LOCALHOST_DATABASE_DUMP_FILE" "$DATA_DESTINATION"/
 

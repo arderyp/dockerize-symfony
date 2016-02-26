@@ -50,11 +50,10 @@ mkdir "$DATA_DESTINATION" && cp -rp "$LOCALHOST_DATABASE_DUMP_FILE" "$DATA_DESTI
 
 
 # Put code overrides in place. The two default overrides in this repo
-# simply allow connections from any host to access the Symfony dev
-# instance, and put a simple redirect index.html in place to send
-# requests to localhost:8081 to localhsot:8081/app_dev.php
-cp "$CODE_OVERRIDES"/app_dev.php "$CODE_DESTINATION"/web
-cp "$CODE_OVERRIDES"/index.html "$CODE_DESTINATION"/web
+# simply allow connections from outside your docker container to access
+# the Symfony dev instance, and put a simple redirect index.html in place
+# to send requests to localhost:8081 to localhsot:8081/app_dev.php
+cp "$CODE_OVERRIDES"/* "$CODE_DESTINATION"/web
 
 # Replace database_host parameter value in symfony's parameters.yml with
 # the name of our database container ('mysql').  This is key, otherwise

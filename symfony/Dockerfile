@@ -1,0 +1,27 @@
+FROM debian:jessie
+MAINTAINER arderyp@gmail.com
+
+# Install container dependencies
+RUN apt-get update && apt-get install -y \
+    php5-cli \
+    php5-common \
+    php5-curl \
+    php5-intl \
+    php5-json \
+    php5-ldap \
+    php5-mcrypt \
+    php5-mysql \
+    && apt-get clean
+
+# Copy code to container's document root
+ADD code /var/www
+
+# Open port
+EXPOSE 80
+
+# Define working directory
+WORKDIR /var/www
+
+# Run initialization script upon spin up
+COPY initialize.sh /initialize.sh
+ENTRYPOINT ["/initialize.sh"]

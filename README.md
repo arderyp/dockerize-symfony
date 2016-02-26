@@ -1,5 +1,5 @@
 # Dockerized Your Symfony Project
-##### Docker + Compose :: Debian :: Symfony + PHP 5.6 + MySQL + Doctrine Migrations
+##### Docker + Compose :: Symfony + PHP 5.6 + MySQL + Doctrine Migrations on Debian
 This repository will provide the simple tools you need to spin up a quick and disposable development instance of your Symfony project.  The docker instance produced by this setup is not intended for production use.  It is as light weight as I could make it, meaning that it uses PHP's internal server, which is not production friendly.  
 
 ### A Use Case

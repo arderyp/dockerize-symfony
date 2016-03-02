@@ -1,0 +1,42 @@
+FROM debian:jessie
+MAINTAINER arderyp@berkeley.edu
+
+# Move oracle packages in place
+ADD oracle /oracle
+
+# Install container dependencies
+RUN apt-get update && apt-get install -y							\
+        libaio1											\
+        alien											\
+    && cd /oracle										\
+    && alien *.rpm										\
+    && dpkg -i *.deb										\
+    && echo /usr/lib/oracle/12.1/client64/lib >> /etc/ld.so.conf.d/oracle.conf			\
+    && ldconfig											\
+    && apt-get install -y									\
+        php5-dev										\
+        php-pear										\
+        php5-cli										\
+        php5-common										\
+        php5-curl										\
+        php5-intl										\
+        php5-json										\
+        php5-ldap										\
+        php5-mcrypt										\
+        php5-mysql										\
+    && apt-get clean 										\
+    && printf 'instantclient,/usr/lib/oracle/12.1/client64/lib\n' | pecl install oci8-2.0.10	\
+    && sed -i 's/\[OCI8\]/\[OCI8\]\nextension=oci8.so/' /etc/php5/cli/php.ini
+
+# Copy code to container's document root
+ADD code /var/www
+
+# Open port
+EXPOSE 80
+
+# Define working directory
+WORKDIR /var/www
+
+# Run initialization script upon spin up
+COPY initialize.sh /initialize.sh
+ENTRYPOINT ["/initialize.sh"]

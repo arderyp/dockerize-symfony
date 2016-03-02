@@ -1,5 +1,5 @@
 FROM debian:jessie
-MAINTAINER arderyp@berkeley.edu
+MAINTAINER arderyp@gmail.com
 
 # Install container dependencies
 RUN apt-get update && apt-get install -y \

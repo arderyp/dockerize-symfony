@@ -1,5 +1,5 @@
 FROM php:7.0
-MAINTAINER arderyp@berkeley.edu
+MAINTAINER arderyp@gmail.com
 
 # Move oracle packages in place
 ADD oracle /oracle

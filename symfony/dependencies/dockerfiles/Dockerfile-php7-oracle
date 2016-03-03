@@ -27,6 +27,7 @@ RUN echo 'deb http://packages.dotdeb.org jessie all' >> /etc/apt/sources.list		\
         php7.0-mysql                                                                    \
     && apt-get clean                                                                    \
     && cd /oracle									\
+    && tar xvfz basic_and_devel_rpm_files.12.1.0.2.0.tgz				\
     && alien *.rpm									\
     && dpkg -i *.deb									\
     && echo /usr/lib/oracle/12.1/client64/lib >> /etc/ld.so.conf.d/oracle.conf		\

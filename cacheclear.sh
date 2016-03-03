@@ -6,10 +6,10 @@ if [ "$(id -u)" != "0" ]; then
    exit 1
 fi
 
-CACHE_DIR='symfony/code/app/cache'
+CACHE_DIR='symfony/custom/code/app/cache'
 
 if [ ! -d "$CACHE_DIR" ]; then
-    echo "The cachedirectory is missing, is the code in place?" 1>&2
+    echo "The cache directory is missing, is the code in place?" 1>&2
     exit 2
 fi
 

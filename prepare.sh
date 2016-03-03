@@ -31,9 +31,9 @@ if [ ! -f "$LOCALHOST_DATABASE_DUMP_FILE" ]; then
     exit
 fi
 
-CODE_DESTINATION='symfony/code'
-CODE_OVERRIDES='symfony/overrides'
-DATA_DESTINATION='symfony/data'
+CODE_DESTINATION='symfony/custom/code'
+CODE_OVERRIDES='symfony/custom/overrides'
+DATA_DESTINATION='symfony/custom/data'
 
 # Clear code base's cache then copy code to docker filesystem
 rm -rf "$LOCALHOST_CODE_SOURCE_DIR"/app/cache/*
@@ -64,6 +64,6 @@ sed -i 's/database_host: localhost/database_host: mysql/' "$CODE_DESTINATION"/ap
 # Remove any svn/git/intellij hidden files if they are present in the repo.
 # The intellij files are not needed, and we don't want to accidentally
 # push a commit from the our dev docker instance.
-find symfony/code -name .svn -exec rm -rf {} \; 2>/dev/null
-find symfony/code -name .git -exec rm -rf {} \; 2>/dev/null
-find symfony/code -name .idea -exec rm -rf {} \; 2>/dev/null
+find "$CODE_DESTINATION" -name .svn -exec rm -rf {} \; 2>/dev/null
+find "$CODE_DESTINATION" -name .git -exec rm -rf {} \; 2>/dev/null
+find "$CODE_DESTINATION" -name .idea -exec rm -rf {} \; 2>/dev/null

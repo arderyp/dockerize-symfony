@@ -6,12 +6,12 @@ mysql:
     MYSQL_ROOT_PASSWORD: YOUR_ROOT_PASSWORD
     MYSQL_DATABASE: YOUR_DATABASE
   volumes:
-    - "./symfony/data:/docker-entrypoint-initdb.d"
+    - "./symfony/custom/data:/docker-entrypoint-initdb.d"
 symfony:
   build: symfony/
   ports:
     - "8081:80"
   volumes:
-    - "./symfony/code:/var/www"
+    - "./symfony/custom/code:/var/www"
   links:
     - "mysql"

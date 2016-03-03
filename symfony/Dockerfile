@@ -1,1 +1,1 @@
-dockerfiles/Dockerfile.php56
+dependencies/dockerfiles/Dockerfile-php56
